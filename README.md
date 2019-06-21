@@ -3,6 +3,7 @@
 ### To-Do
 - [x] Get a list of all the departments from https://www.reg.uci.edu/perl/WebSoc and write the departments to a text file.
 - [ ] Go through each department and gather relevant course information.
+- [ ] Create a class for departments and courses.
 
 ### Course Info
 1. course code
