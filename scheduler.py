@@ -25,8 +25,14 @@ try:
 
         lt.append(l)
 
-    for i in lt:
-        print(i)
+    with open("course_list.txt", "w") as f:
+        for course in lt:
+            if (len(course) == 1):
+                f.write(course[0])
+
+                if course[0] != "WRITING":
+                    f.write("\n")
 
 finally:
     driver.quit()
+    print("program finished running")
