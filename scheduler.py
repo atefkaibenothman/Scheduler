@@ -1,10 +1,9 @@
 # scheduler.py
 # Atef Kai Benothman 6/20/2019
-
-# To-Do:
+#
+# TO-DO:
 # 1. Refactor code
 # 2. Implement dictionary
-
 
 from collections import defaultdict
 from selenium import webdriver
