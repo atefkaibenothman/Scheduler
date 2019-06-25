@@ -7,6 +7,9 @@
 #
 # IMPORTANT: this module should only be ran if a department is added/removed
 
+# https://stackoverflow.com/questions/13555307/how-to-get-the-option-text-using-beautifulsoup/13555350
+# page = driver.page_source
+# https://www.reg.uci.edu/perl/WebSoc?YearTerm=2019-92&ShowFinals=1&ShowComments=1&Dept=WRITING
 
 from collections import defaultdict
 from selenium import webdriver
