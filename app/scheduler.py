@@ -1,8 +1,12 @@
 # scheduler.py
 # Atef Kai Benothman 6/20/2019
 #
-# TO-DO:
-# 1. Implement dictionary
+# This module web-scrapes all the departments from UCI's schedule of classes
+# wesbite (https://www.reg.uci.edu/perl/WebSoc) and writes each department
+# to the dept_list.txt file
+#
+# IMPORTANT: this module should only be ran if a department is added/removed
+
 
 from collections import defaultdict
 from selenium import webdriver
@@ -46,17 +50,9 @@ def write_dept_to_file(dept_list, dept_list_path):
     return
 
 
-def initialize_dept_dict(dept_list_path):
-    d = defaultdict()
-    for line in open(dept_list_path, "r"):
-        d[line.strip()] = {}
-
-    return d
-
-
 if __name__ == "__main__":
     chrome_driver_path = "D:\drivers\chromedriver.exe"
-    dept_list_path = "data/dept_list.txt"
+    dept_list_path = "data\dept_list.txt"
     url = "https://www.reg.uci.edu/perl/WebSoc"
 
     driver = initialize_driver(chrome_driver_path, url)
@@ -64,6 +60,5 @@ if __name__ == "__main__":
     try:
         dept_list = get_department_list(driver)
         write_dept_to_file(dept_list, dept_list_path)
-        initialize_dept_dict(dept_list_path)
     finally:
         driver.quit()
