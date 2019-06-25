@@ -55,9 +55,8 @@ def initialize_dept_dict(dept_list_path):
 
 
 if __name__ == "__main__":
-
     chrome_driver_path = "D:\drivers\chromedriver.exe"
-    dept_list_path = "dept_list.txt"
+    dept_list_path = "data/dept_list.txt"
     url = "https://www.reg.uci.edu/perl/WebSoc"
 
     driver = initialize_driver(chrome_driver_path, url)
