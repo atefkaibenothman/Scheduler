@@ -3,6 +3,10 @@
 ### Overview
 A web-scraper tool that makes it easier for students to monitor class sizes using https://www.reg.uci.edu/perl/WebSoc.
 
+### Setup
+1. pip install beautifulsoup4
+2. pip install requests
+
 ### To-Do
 - [ ] Use requests to get a list of all the departments.
 
