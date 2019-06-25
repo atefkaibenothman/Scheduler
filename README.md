@@ -57,9 +57,7 @@ Example:
                   reserved: 399,
                restriction: 'A and N',
                     status: 'NewOnly',
-            }
-        },
-        {
+            },
             35341 : 
             {
                       type: 'Dis',
