@@ -2,49 +2,69 @@
 # Atef Kai Benothman 6/20/2019
 #
 # TO-DO:
-# 1. Refactor code
-# 2. Implement dictionary
+# 1. Implement dictionary
 
 from collections import defaultdict
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
-import re
 
-chrome_driver_path = "D:\drivers\chromedriver.exe"
-url = "https://www.reg.uci.edu/perl/WebSoc"
 
-driver = webdriver.Chrome(executable_path=chrome_driver_path)
-driver.get(url)
+def initialize_driver(driver_path, url):
+    driver = webdriver.Chrome(driver_path)
+    driver.get(url)
 
-dd_menu = Select(driver.find_element_by_name("Dept"))
+    return driver
 
-try:
-    lt = []
+
+def get_department_list(driver):
+    dd_menu = Select(driver.find_element_by_name("Dept"))
+
+    dept_list = []
     for option in dd_menu.options:
-        line = option.text
-        line_split = line.replace(".", " ").split()
+        line = option.text.replace(".", ",").split()
 
-        l = []
-        if line_split[1].isupper():
-            l.append(line_split[0] + " " + line_split[1])
+        dept_name = ""
+        if line[1].isupper():
+            dept_name = line[0] + " " + line[1]
         else:
-            if line_split[0].isupper():
-                l.append(line_split[0])
+            if line[0].isupper():
+                dept_name = line[0]
 
-        lt.append(l)
+        dept_list.append(dept_name)
 
+    return dept_list[1:]
+
+
+def write_dept_to_file(dept_list, dept_list_path):
+    with open(dept_list_path, "w") as file:
+        for dept in dept_list:
+            if (dept != "WRITING"):
+                file.write(dept + "\n")
+            else:
+                file.write(dept)
+
+    return
+
+
+def initialize_dept_dict(dept_list_path):
     d = defaultdict()
-    with open("course_list.txt", "w") as f:
-        for course in lt:
-            if (len(course) == 1):
-                d[course[0]] = {}
-                f.write(course[0])
+    for line in open(dept_list_path, "r"):
+        d[line.strip()] = {}
 
-                if course[0] != "WRITING":
-                    f.write("\n")
+    return d
 
-    print(d)
 
-finally:
-    driver.quit()
-    print("program finished running")
+if __name__ == "__main__":
+
+    chrome_driver_path = "D:\drivers\chromedriver.exe"
+    dept_list_path = "dept_list.txt"
+    url = "https://www.reg.uci.edu/perl/WebSoc"
+
+    driver = initialize_driver(chrome_driver_path, url)
+
+    try:
+        dept_list = get_department_list(driver)
+        write_dept_to_file(dept_list, dept_list_path)
+        initialize_dept_dict(dept_list_path)
+    finally:
+        driver.quit()
