@@ -1,67 +1,82 @@
 # scheduler.py
 # Atef Kai Benothman 6/20/2019
 #
-# This module web-scrapes all the departments from UCI's schedule of classes
-# wesbite (https://www.reg.uci.edu/perl/WebSoc) and writes each department
-# to the dept_list.txt file
-#
-# IMPORTANT: this module should only be ran if a department is added/removed
+# This module send a request to 'https://www.reg.uci.edu/perl/WebSoc' and fills
+# the dept_list.txt file with a list of all the department names in order.
 
-# https://stackoverflow.com/questions/13555307/how-to-get-the-option-text-using-beautifulsoup/13555350
-# page = driver.page_source
-# https://www.reg.uci.edu/perl/WebSoc?YearTerm=2019-92&ShowFinals=1&ShowComments=1&Dept=WRITING
-
-from collections import defaultdict
-from selenium import webdriver
-from selenium.webdriver.support.ui import Select
+import requests
+from bs4 import BeautifulSoup
 
 
-def initialize_driver(driver_path, url):
-    driver = webdriver.Chrome(driver_path)
-    driver.get(url)
-
-    return driver
+def get_result(url):
+    result = requests.get(url)
+    return result
 
 
-def get_department_list(driver):
-    dd_menu = Select(driver.find_element_by_name("Dept"))
+def get_status_code(result):
+    return result.status_code
 
-    dept_list = []
-    for option in dd_menu.options:
-        line = option.text.replace(".", ",").split()
 
-        dept_name = ""
-        if line[1].isupper():
-            dept_name = line[0] + " " + line[1]
+def get_result_content(result):
+    return result.content
+
+
+def get_department_names(content):
+    soup = BeautifulSoup(content, features='lxml')
+
+    options = soup.find('select', {'name': 'Dept'}).text.split('\n')
+    options = options[2:]
+
+    return(options[:-1])
+
+
+def clean_department_list(dept_list):
+    dept_codes = []
+    dept_names = []
+    for dept in dept_list:
+        line = dept.replace('.', ' ').split()
+
+        dept_code = ''
+        dept_full_name = ''
+
+        if line[1].isupper() and line[0] != 'UCDC':
+            dept_code = line[0] + ' ' + line[1]
+
+            for i in line[2:]:
+                dept_full_name = dept_full_name + i + ' '
+                dept_full_name.strip()
         else:
-            if line[0].isupper():
-                dept_name = line[0]
+            dept_code = line[0]
 
-        dept_list.append(dept_name)
+            for i in line[1:]:
+                dept_full_name = dept_full_name + i + ' '
+                dept_full_name.strip()
 
-    return dept_list[1:]
+        dept_codes.append(dept_code)
+        dept_names.append(dept_full_name)
+
+    return dept_codes, dept_names
 
 
-def write_dept_to_file(dept_list, dept_list_path):
-    with open(dept_list_path, "w") as file:
-        for dept in dept_list:
-            if (dept != "WRITING"):
-                file.write(dept + "\n")
+def fill_dept_list_file(dept_codes, dept_list_path):
+    with open(dept_list_path, 'w') as file:
+        for dept in dept_codes:
+            if (dept != 'WRITING'):
+                file.write(dept + '\n')
             else:
                 file.write(dept)
-
     return
 
 
-if __name__ == "__main__":
-    chrome_driver_path = "D:\drivers\chromedriver.exe"
-    dept_list_path = "data\dept_list.txt"
-    url = "https://www.reg.uci.edu/perl/WebSoc"
+if __name__ == '__main__':
 
-    driver = initialize_driver(chrome_driver_path, url)
+    base_url = 'https://www.reg.uci.edu/perl/WebSoc'
 
-    try:
-        dept_list = get_department_list(driver)
-        write_dept_to_file(dept_list, dept_list_path)
-    finally:
-        driver.quit()
+    result = get_result(base_url)
+    content = get_result_content(result)
+
+    full_department_list = get_department_names(content)
+    dept_codes, dept_names = clean_department_list(full_department_list)
+
+    dept_list_path = 'data\dept_list.txt'
+    fill_dept_list_file(dept_codes, dept_list_path)
