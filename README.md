@@ -6,6 +6,7 @@ A web-scraper tool that makes it easier for students to monitor class sizes usin
 ### Setup
 1. pip install beautifulsoup4
 2. pip install requests
+3. pip install pandas
 
 ### To-Do
 - [ ] Use requests to get a list of all the departments.
