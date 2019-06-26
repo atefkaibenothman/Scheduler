@@ -68,10 +68,8 @@ def fill_dept_list_file(dept_codes, dept_list_path):
     return
 
 
-if __name__ == '__main__':
-
+def run():
     base_url = 'https://www.reg.uci.edu/perl/WebSoc'
-
     result = get_result(base_url)
     content = get_result_content(result)
 
@@ -80,3 +78,7 @@ if __name__ == '__main__':
 
     dept_list_path = 'data\dept_list.txt'
     fill_dept_list_file(dept_codes, dept_list_path)
+
+
+if __name__ == '__main__':
+    run()
