@@ -25,5 +25,4 @@ def run(url):
 
 if __name__ == '__main__':
     url = get_dept_url()
-
     run(url)
