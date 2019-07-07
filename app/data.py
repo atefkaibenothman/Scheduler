@@ -5,6 +5,7 @@
 
 import requests
 from bs4 import BeautifulSoup
+from collections import defaultdict
 
 
 def get_course_page(url):
@@ -31,14 +32,31 @@ def get_course_info(content):
     school_name = courses[0][0]
     courses = courses[2:]
 
-    print('School: ', school_name)
-    print('{} {} {} {} {} {} {} {} {} {} {} {} {} {} {}'.format('Code', 'Type', 'Sec', 'Units',
-                                                                'Instructor', 'Time', 'Place', 'Final', 'Max', 'Enr', 'WL', 'Req', 'Nor', 'Rstr', 'Status'))
-    print('==========================================================================')
     for course in courses:
         if len(course) == 1 and course[0][0] != '(':
-            course_name = course[0]
-            print('Course Name: ', course_name)
+            course_title = course[0].split()
+
+
+            dept_name = []
+            c = 0
+            for i in course_title:
+                try:
+                    if int(i[0]):
+                        course_name = i
+                        c += 1
+                    break
+                except ValueError:
+                    dept_name.append(i)
+                    c += 1
+
+
+            dept_name = ' '.join(dept_name)
+            course_name_title = ' '.join(course_title[c:])
+
+            print('DEPT: ', dept_name)
+            print('COURSE: ', course_name)
+            print('COURSE TITLE: ', course_name_title)
+
         elif course[0][0] == '(':
             continue
         else:
