@@ -4,6 +4,7 @@
 # This module send a request to 'https://www.reg.uci.edu/perl/WebSoc' and fills
 # the dept_list.txt file with a list of all the department names in order.
 
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -27,7 +28,7 @@ def get_department_names(content):
     options = soup.find('select', {'name': 'Dept'}).text.split('\n')
     options = options[2:]
 
-    return(options[:-1])
+    return options[:-1]
 
 
 def clean_department_list(dept_list):
@@ -36,7 +37,6 @@ def clean_department_list(dept_list):
     for dept in dept_list:
         line = dept.replace('.', ' ').split()
 
-        dept_code = ''
         dept_full_name = ''
 
         if line[1].isupper() and line[0] != 'UCDC':
@@ -61,7 +61,7 @@ def clean_department_list(dept_list):
 def fill_dept_list_file(dept_codes, dept_list_path):
     with open(dept_list_path, 'w') as file:
         for dept in dept_codes:
-            if (dept != 'WRITING'):
+            if dept != 'WRITING':
                 file.write(dept + '\n')
             else:
                 file.write(dept)

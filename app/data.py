@@ -3,9 +3,9 @@
 #
 # This module sends a request to the specified url and sorts the data accordingly.
 
+
 import requests
 from bs4 import BeautifulSoup
-from collections import defaultdict
 
 
 def get_course_page(url):
@@ -26,16 +26,15 @@ def get_course_info(content):
         td = tr.find_all('td')
         row = [i.text.replace('\xa0', '').strip() for i in td]
         if len(row) >= 1:
-            if (row[0] != ''):
+            if row[0] != '':
                 courses.append(row)
 
-    school_name = courses[0][0]
+    # school_name = courses[0][0]
     courses = courses[2:]
 
     for course in courses:
         if len(course) == 1 and course[0][0] != '(':
             course_title = course[0].split()
-
 
             dept_name = []
             c = 0
@@ -49,7 +48,6 @@ def get_course_info(content):
                     dept_name.append(i)
                     c += 1
 
-
             dept_name = ' '.join(dept_name)
             course_name_title = ' '.join(course_title[c:])
 
@@ -61,7 +59,7 @@ def get_course_info(content):
             continue
         else:
             course_code = course[0]
-            type = course[1]
+            c_type = course[1]
             sec = course[2]
             units = course[3]
             instructor = course[4]
@@ -70,11 +68,13 @@ def get_course_info(content):
             final = course[7]
             max_seats = course[8]
             enrolled = course[9]
-            waitlist = course[10]
+            wait_list = course[10]
             requested = course[11]
             reserved = course[12]
             restriction = course[13]
             status = course[16]
 
-            print('{} {} {} {} {} {} {} {} {} {} {} {} {} {} {}'.format(course_code, type, sec, units,
-                                                                        instructor, time, place, final, max_seats, enrolled, waitlist, requested, reserved, restriction, status))
+            print('{} {} {} {} {} {} {} {} {} {} {} {} {} {} {}'.format(course_code, c_type, sec, units,
+                                                                        instructor, time, place, final, max_seats,
+                                                                        enrolled, wait_list, requested, reserved,
+                                                                        restriction, status))

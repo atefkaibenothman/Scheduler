@@ -3,8 +3,9 @@
 #
 # This is the CourseCode class module
 
+
 class CourseCode:
-    def __init__(self, course_code, c_type, sec, units, instructor, time, place, final, max_allowed, enrolled, waitlist,
+    def __init__(self, course_code, c_type, sec, units, instructor, time, place, final, max_allowed, enrolled, wait_list,
                  requested, reserved, restriction, status):
         self.course_code = course_code
         self.c_type = c_type
@@ -16,7 +17,7 @@ class CourseCode:
         self.final = final
         self.max_allowed = max_allowed
         self.enrolled = enrolled
-        self.waitlist = waitlist
+        self.wait_list = wait_list
         self.requested = requested
         self.reserved = reserved
         self.restriction = restriction
@@ -52,7 +53,7 @@ class CourseCode:
     def get_enrolled(self):
         return self.enrolled
 
-    def get_waitlist(self):
+    def get_wait_list(self):
         return self.waitlist
 
     def get_requested(self):
