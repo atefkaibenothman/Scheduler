@@ -7,7 +7,7 @@
 
 import urlbuilder
 import data
-import json
+import app
 
 
 def get_dept_url():
@@ -25,9 +25,25 @@ def run(url):
     content = data.get_course_page(url)
     course_info = data.get_course_info(content)
 
-    with open("course_data.json", "w") as json_file:
-        json.dump(course_info, json_file)
+    for k,v in course_info.items():
+        print(k)
+        for key, val in v.items():
+            print(key)
+            for (k1, v1) in val.items():
+                print(k1)
+                for k2, v2 in v1.items():
+                    print(k2,"=",v2)
+                print()
 
+        print()
+
+
+
+
+    # with open("course_data.json", "w") as json_file:
+    #     json.dump(course_info, json_file)
+
+    # app.run()
 
 
 
