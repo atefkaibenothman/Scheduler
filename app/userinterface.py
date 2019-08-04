@@ -25,7 +25,7 @@ def run(url):
     content = data.get_course_page(url)
     course_info = data.get_course_info(content)
 
-    with open("course_data.txt", "w") as json_file:
+    with open("course_data.json", "w") as json_file:
         json.dump(course_info, json_file)
 
 
