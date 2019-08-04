@@ -1,0 +1,24 @@
+{
+  "name": "scheduler",
+  "version": "1.0.0",
+  "description": "A web-scraper tool that makes it easier for students to monitor class sizes using https://www.reg.uci.edu/perl/WebSoc.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atefkaibenothman/Scheduler.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atefkaibenothman/Scheduler/issues"
+  },
+  "homepage": "https://github.com/atefkaibenothman/Scheduler#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "flask": "^0.2.10",
+    "mysql": "^2.17.1"
+  }
+}
