@@ -7,6 +7,7 @@
 
 import urlbuilder
 import data
+import json
 
 
 def get_dept_url():
@@ -22,7 +23,13 @@ def get_dept_url():
 
 def run(url):
     content = data.get_course_page(url)
-    data.get_course_info(content)
+    course_info = data.get_course_info(content)
+
+    with open("course_data.txt", "w") as json_file:
+        json.dump(course_info, json_file)
+
+
+
 
 
 if __name__ == '__main__':

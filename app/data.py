@@ -6,6 +6,7 @@
 
 import requests
 from bs4 import BeautifulSoup
+from collections import defaultdict
 
 
 def get_course_page(url):
@@ -21,6 +22,12 @@ def get_course_info(content):
     table = table[1]
     table_rows = table.find_all('tr')
 
+    data = scrape_data(table_rows)
+
+    return data
+
+
+def scrape_data(table_rows):
     courses = []
     for tr in table_rows:
         td = tr.find_all('td')
@@ -29,9 +36,9 @@ def get_course_info(content):
             if row[0] != '':
                 courses.append(row)
 
-    # school_name = courses[0][0]
     courses = courses[2:]
 
+    d = defaultdict()
     for course in courses:
         if len(course) == 1 and course[0][0] != '(':
             course_title = course[0].split()
@@ -49,11 +56,12 @@ def get_course_info(content):
                     c += 1
 
             dept_name = ' '.join(dept_name)
-            course_name_title = ' '.join(course_title[c:])
+            # course_name_title = ' '.join(course_title[c:])
 
-            print('DEPT: ', dept_name)
-            print('COURSE: ', course_name)
-            print('COURSE TITLE: ', course_name_title)
+            if dept_name not in d.keys():
+                d[dept_name] = {}
+
+            d[dept_name].update({course_name:{}})
 
         elif course[0][0] == '(':
             continue
@@ -74,7 +82,22 @@ def get_course_info(content):
             restriction = course[13]
             status = course[16]
 
-            print('{} {} {} {} {} {} {} {} {} {} {} {} {} {} {}'.format(course_code, c_type, sec, units,
-                                                                        instructor, time, place, final, max_seats,
-                                                                        enrolled, wait_list, requested, reserved,
-                                                                        restriction, status))
+            d[dept_name][course_name].update({course_code:{}})
+
+            d[dept_name][course_name][course_code].update({"type": c_type})
+            d[dept_name][course_name][course_code].update({"sec": sec})
+            d[dept_name][course_name][course_code].update({"units": units})
+            d[dept_name][course_name][course_code].update({"instructor": instructor})
+            d[dept_name][course_name][course_code].update({"time": time})
+            d[dept_name][course_name][course_code].update({"place": place})
+            d[dept_name][course_name][course_code].update({"final": final})
+            d[dept_name][course_name][course_code].update({"max_seats": max_seats})
+            d[dept_name][course_name][course_code].update({"enrolled": enrolled})
+            d[dept_name][course_name][course_code].update({"wait_list": wait_list})
+            d[dept_name][course_name][course_code].update({"requested": requested})
+            d[dept_name][course_name][course_code].update({"reserved": reserved})
+            d[dept_name][course_name][course_code].update({"restriction": restriction})
+            d[dept_name][course_name][course_code].update({"status": status})
+
+
+    return (d)
