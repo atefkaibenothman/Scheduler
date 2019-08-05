@@ -13,7 +13,10 @@ def run():
     web_list = user_input()
     web_content = get_content(web_list)
 
-    
+    c = database.columns()
+    v = database.values(web_content)
+    database.insert(c, v)
+
 
 def get_content(weblist: list):
     course_data_list = []
@@ -50,10 +53,12 @@ def user_input():
         print("Website: ", url)
         print()
 
-        wish_to_quit = input("Quit [yes]: ") or "yes"
-        print()
-        if wish_to_quit == "yes":
-            running = False
+        # wish_to_quit = input("Quit [yes]: ") or "yes"
+        # print()
+        # if wish_to_quit == "yes":
+        #     running = False
+
+        running = False
 
     return website_list
 

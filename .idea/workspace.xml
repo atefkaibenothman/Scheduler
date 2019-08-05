@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c3818f11-ef20-40b8-9aca-b6eb3c497741" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/course_data.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/course_data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/data.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/data.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schedule.db" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/scheduler.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/urlbuilder.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/urlbuilder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/database.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/userinterface.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/userinterface.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,7 +16,7 @@
     <session id="-1545776852">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.0" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.opened" value="2" />
@@ -42,45 +36,40 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1664" />
+          <entry key="py" value="3253" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1664" />
+          <entry key="Python" value="3253" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/userinterface.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+            <state relative-caret-position="361">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
               <folding>
                 <element signature="e#96#113#0" expanded="true" />
-                <marker date="1564964708728" expanded="true" signature="323:618" ph="..." />
+                <marker date="1564976289511" expanded="true" signature="409:704" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/data.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/database.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="38">
-              <caret line="2" column="57" selection-start-line="2" selection-start-column="57" selection-end-line="2" selection-end-column="57" />
+            <state relative-caret-position="323">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
+              <folding>
+                <marker date="1564976275062" expanded="true" signature="117:191" ph="..." />
+                <marker date="1564976275062" expanded="true" signature="383:543" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,8 +94,8 @@
       <list>
         <option value="$PROJECT_DIR$/app/urlbuilder.py" />
         <option value="$PROJECT_DIR$/app/scheduler.py" />
-        <option value="$PROJECT_DIR$/app/database.py" />
         <option value="$PROJECT_DIR$/app/data.py" />
+        <option value="$PROJECT_DIR$/app/database.py" />
         <option value="$PROJECT_DIR$/app/userinterface.py" />
       </list>
     </option>
@@ -174,7 +163,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.userinterface">
+  <component name="RunManager" selected="Python.database">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <module name="scheduler" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -241,7 +230,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="userinterface" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="database" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="scheduler" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -254,7 +243,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/userinterface.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/database.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -264,13 +253,13 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.userinterface" />
+      <item itemvalue="Python.database" />
       <item itemvalue="Python.app" />
       <item itemvalue="Python.app (1)" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.userinterface" />
+        <item itemvalue="Python.database" />
         <item itemvalue="Python.app (1)" />
         <item itemvalue="Python.app" />
       </list>
@@ -294,14 +283,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="729" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2494043" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2494043" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32967034" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32967034" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -364,25 +352,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
+        <state relative-caret-position="285">
           <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/database.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="57" selection-start-line="2" selection-start-column="57" selection-end-line="2" selection-end-column="57" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/userinterface.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        <state relative-caret-position="361">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
           <folding>
             <element signature="e#96#113#0" expanded="true" />
-            <marker date="1564964708728" expanded="true" signature="323:618" ph="..." />
+            <marker date="1564976289511" expanded="true" signature="409:704" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/database.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <marker date="1564976275062" expanded="true" signature="117:191" ph="..." />
+            <marker date="1564976275062" expanded="true" signature="383:543" ph="..." />
           </folding>
         </state>
       </provider>
