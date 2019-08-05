@@ -3,6 +3,18 @@
 # This module inserts the dictionary into a table in sql.
 
 import json
+import mysql.connector as mysql
+
+
+def initial_run():
+
+    db = mysql.connect(
+        host="localhost",
+        user="root",
+        passwd="password"
+    )
+
+    print(db)
 
 
 def print_dict(web_content):
@@ -38,4 +50,4 @@ def insert(column, value_list):
 
 
 if __name__ == "__main__":
-    pass
+    initial_run()
