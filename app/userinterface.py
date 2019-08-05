@@ -1,53 +1,62 @@
 # userinterface.py
-# Atef Kai Benothman 6/25/2019
 #
-# This module handles the simple (temporary) user interface for
-# testing the program.
+# This module handles the CLI for
+# testing the api and program.
 
-
+# Files
 import urlbuilder
 import data
-import app
+import database
 
 
-def get_dept_url():
-    year_term = input('Enter the year term [2019]: ') or '2019'
-    dept_name = input('Enter the department name [I&C SCI]: ') or 'I&C SCI'
-    show_finals = input('Show finals? [1]: ') or '1'
-    show_comments = input('Show comments? [0]: ') or '0'
-    print()
+def run():
+    web_list = user_input()
+    web_content = get_content(web_list)
 
-    return(urlbuilder.build_search_url(
-        year_term, dept_name.upper(), show_finals, show_comments))
+    
+
+def get_content(weblist: list):
+    course_data_list = []
+    for url in weblist:
+        try:
+            content = data.get_page_content(url)
+            course_data = data.get_course_info(content)
+
+            course_data_list.append(course_data)
+        except IndexError:
+            print("could not retrieve course data.... course removed from list")
+
+    return course_data_list
 
 
-def run(url):
-    content = data.get_course_page(url)
-    course_info = data.get_course_info(content)
+def user_input():
+    running = True
+    website_list = []
+    while running:
+        year_term = input("Year Term [2019]: ") or "2019"
+        dept_name = input("Department Name [ICS]: ") or "I&C SCI"
+        show_finals = input("Show Finals [1]: ") or "1"
+        show_comments = input("Show Comments [0]: ") or "0"
 
-    for k,v in course_info.items():
-        print(k)
-        for key, val in v.items():
-            print(key)
-            for (k1, v1) in val.items():
-                print(k1)
-                for k2, v2 in v1.items():
-                    print(k2,"=",v2)
-                print()
+        url = urlbuilder.build_search_url(
+            year_term,
+            dept_name.upper(),
+            show_finals,
+            show_comments)
 
         print()
+        print("YearTerm: {}\nDeptName: {}".format(year_term, dept_name))
+        website_list.append(url)
+        print("Website: ", url)
+        print()
+
+        wish_to_quit = input("Quit [yes]: ") or "yes"
+        print()
+        if wish_to_quit == "yes":
+            running = False
+
+    return website_list
 
 
-
-
-    # with open("course_data.json", "w") as json_file:
-    #     json.dump(course_info, json_file)
-
-    # app.run()
-
-
-
-
-if __name__ == '__main__':
-    url = get_dept_url()
-    run(url)
+if __name__ == "__main__":
+    run()

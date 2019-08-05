@@ -1,5 +1,4 @@
 # data.py
-# Atef Kai Benothman 6/25/2019
 #
 # This module sends a request to the specified url and sorts the data accordingly.
 
@@ -9,7 +8,7 @@ from bs4 import BeautifulSoup
 from collections import defaultdict
 
 
-def get_course_page(url):
+def get_page_content(url):
     page = requests.get(url)
     content = page.content
 
@@ -99,5 +98,4 @@ def scrape_data(table_rows):
             d[dept_name][course_name][course_code].update({"restriction": restriction})
             d[dept_name][course_name][course_code].update({"status": status})
 
-
-    return (d)
+    return d
